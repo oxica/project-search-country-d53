@@ -43,7 +43,7 @@ const inputHandler = (e) => {
           const cardHTML2 = "";
 
           main2.innerHTML = cardHTML2;
-        }, 500);
+        },1000);
         return;
       }
       renderMarkup(data);
