@@ -43,7 +43,7 @@ const inputHandler = (e) => {
           const cardHTML2 = "";
 
           main2.innerHTML = cardHTML2;
-        }, 1500);
+        }, 500);
         return;
       }
       renderMarkup(data);
@@ -62,7 +62,7 @@ const inputHandler = (e) => {
         const cardHTML = '';
 
         main.innerHTML = cardHTML;
-      }, 1500);
+      }, 1000);
     
     });
 };
