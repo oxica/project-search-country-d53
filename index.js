@@ -1,8 +1,8 @@
-const DEBOUNCE_DELAY = 300;
-
 const inputEl = document.getElementById("search-box");
 const listEl = document.querySelector(".country-list");
 const infoEl = document.querySelector(".country-info");
+const main = document.getElementById("main");
+const main2 = document.getElementById("main2");
 
 const BASE_URL = "https://restcountries.com/v3.1/name";
 
@@ -32,9 +32,18 @@ const inputHandler = (e) => {
     .then((data) => {
       console.log(data);
       if (data.length > 10) {
-        console.log(
-          "Too many matches found. Please enter a more specific name"
-        );
+        const cardHTML2 = `
+        <div class="card">
+            <h1>Too many matches found. Please enter a more specific name</h1>
+        </div>
+    `;
+
+        main2.innerHTML = cardHTML2;
+        setTimeout(() => {
+          const cardHTML2 = "";
+
+          main2.innerHTML = cardHTML2;
+        }, 1500);
         return;
       }
       renderMarkup(data);
@@ -42,7 +51,19 @@ const inputHandler = (e) => {
     .catch((err) => {
       cleanMarkup(listEl);
       cleanMarkup(infoEl);
-      console.log("Oops, there is no country with that name");
+        const cardHTML = `
+        <div class="card">
+            <h1>Oops, there is no country with that name</h1>
+        </div>
+    `;
+
+      main.innerHTML = cardHTML;
+      setTimeout(() => {
+        const cardHTML = '';
+
+        main.innerHTML = cardHTML;
+      }, 1500);
+    
     });
 };
 
@@ -78,8 +99,8 @@ const createInfoMarkup = (data) => {
       <p>Languages: ${Object.values(languages)}</p>`
   );
 };
-
-inputEl.addEventListener("input", inputHandler);
+const debaunce = _.debounce(inputHandler, 300);
+inputEl.addEventListener("input", debaunce);
 
 
 
